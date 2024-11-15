@@ -17,7 +17,7 @@ export async function fetchAsDataURL<T>(
   init: RequestInit | undefined,
   process: (data: { result: string; res: Response }) => T,
 ): Promise<T> {
-  const res = await fetch(url, init)
+  const res = await fetch(url, {...init, mode:"no-cors"})
   if (res.status === 404) {
     throw new Error(`Resource "${res.url}" not found`)
   }
